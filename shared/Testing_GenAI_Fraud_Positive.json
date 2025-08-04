@@ -1,3 +1,4 @@
+[
   {
     "amt": 19.25,
     "category": "gas_transport",
@@ -12,4 +13,20 @@
     "long": -96.7970,
     "merch_lat": 32.8105,
     "merch_long": -96.6793
-  }
+  },
+{
+    "amt": "28.00",
+    "category": "health_fitness",
+    "city": "Collettsville",
+    "state": "NC",
+    "job": "Mechanical Engineer",
+    "merchant": "Michelle Schmidt",
+    "gender": null,
+    "zip": "21611",
+    "city_pop": "885098",
+    "lat": "135.99",
+    "long": "-281.73",
+    "merch_lat": "136.43",
+    "merch_long": "-181.18"
+}
+]
