@@ -1,0 +1,32 @@
+[
+  {
+    "amt": 281.06,
+    "category": "grocery_pos",
+    "city": "Collettsville",
+    "state": "NC",
+    "job": "Soil scientist",
+    "merchant": "fraud_Rutherford-Mertz",
+    "gender": "M",
+    "zip": 28611,
+    "city_pop": 885,
+    "lat": 35.9946,
+    "long": -81.7266,
+    "merch_lat": 36.430124,
+    "merch_long": -81.179483
+  },
+  {
+    "amt": 24.84,
+    "category": "health_fitness",
+    "city": "Notrees",
+    "state": "TX",
+    "job": "Cytogeneticist",
+    "merchant": "fraud_Hamill-D'Amore",
+    "gender": "F",
+    "zip": 79759,
+    "city_pop": 23,
+    "lat": 31.8599,
+    "long": -102.7413,
+    "merch_lat": 32.575873,
+    "merch_long": -102.60429
+  }
+]
