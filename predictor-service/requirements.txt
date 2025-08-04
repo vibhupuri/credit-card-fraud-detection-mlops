@@ -3,3 +3,4 @@ uvicorn
 joblib
 scikit-learn==1.4.2
 numpy
+requests
