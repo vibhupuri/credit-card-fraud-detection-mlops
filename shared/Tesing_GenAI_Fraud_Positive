@@ -1,0 +1,15 @@
+  {
+    "amt": 19.25,
+    "category": "gas_transport",
+    "city": "Dallas",
+    "state": "TX",
+    "job": "Nurse",
+    "merchant": "Exxon-Dallas",
+    "gender": "F",
+    "zip": 75201,
+    "city_pop": 1343000,
+    "lat": 32.7767,
+    "long": -96.7970,
+    "merch_lat": 32.8105,
+    "merch_long": -96.6793
+  }
