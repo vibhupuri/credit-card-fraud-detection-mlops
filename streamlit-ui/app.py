@@ -1,11 +1,12 @@
 import streamlit as st
 import pandas as pd
 import requests
+import os
 
 st.title("💳 Real-Time Credit Card Fraud Detection")
 
 # Predictor service URL (update if deployed on Railway with different domain)
-PREDICT_URL = "https://credit-card-fraud-detection-mlops-production.up.railway.app/predict"
+PREDICT_URL = PREDICT_URL = os.getenv("PREDICT_URL", "http://localhost:8000/predict")
 
 fields = {
     "Transaction Amount": st.number_input("Transaction Amount (₹)", min_value=0.0),
