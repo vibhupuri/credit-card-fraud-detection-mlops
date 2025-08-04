@@ -26,33 +26,43 @@ fields = {
 
 if st.button("🚨 Detect Fraud"):
     try:
-        # Prepare payload
-        payload = fields
-        response = requests.post(PREDICT_URL, json=payload)
+        # Rename keys to match model input
+        key_map = {
+            "Transaction Amount": "amt",
+            "Category": "category",
+            "City": "city",
+            "State": "state",
+            "Job": "job",
+            "Merchant": "merchant",
+            "Gender": "gender",
+            "Zip Code": "zip",
+            "City Population": "city_pop",
+            "Latitude": "lat",
+            "Longitude": "long",
+            "Merchant Latitude": "merch_lat",
+            "Merchant Longitude": "merch_long"
+        }
+        model_input = {model_key: fields[user_key] for user_key, model_key in key_map.items()}
 
-        # Check if the request was successful
+        # Send to predictor
+        response = requests.post(PREDICT_URL, json=model_input)
+
         if response.status_code == 200:
-            try:
-                result = response.json()
-                prediction = result.get("prediction") or result.get("result")
-                
-                if prediction is None:
-                    st.error("❌ Response missing 'prediction' or 'result' key.")
-                    st.json(result)
-                    st.json(payload)
-                elif prediction == 1:
-                    st.error("⚠️ This transaction is likely FRAUDULENT.")
-                else:
-                    st.success("✅ This transaction appears LEGITIMATE.")
-            
-            except ValueError:
-                st.error("❌ Failed to parse JSON from response.")
+            result = response.json()
+            prediction = result.get("prediction")
+
+            if prediction is None:
+                st.error("❌ No 'prediction' key in response.")
+                st.json(result)
+            elif prediction == 1:
+                st.error("⚠️ This transaction is likely FRAUDULENT.")
+            else:
+                st.success("✅ This transaction appears LEGITIMATE.")
         else:
-            st.error(f"❌ Server returned status code {response.status_code}")
+            st.error(f"❌ Server returned {response.status_code}")
             st.text(response.text)
 
-    except requests.exceptions.ConnectionError:
-        st.error("❌ Failed to connect to predictor service.")
     except Exception as e:
-        st.error(f"❌ Unexpected error: {e}")
+        st.error(f"❌ Exception occurred: {e}")
+
 
