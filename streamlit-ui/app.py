@@ -26,17 +26,32 @@ fields = {
 
 if st.button("🚨 Detect Fraud"):
     try:
-        # Send POST request
+        # Prepare payload
         payload = {"features": list(fields.values())}
         response = requests.post(PREDICT_URL, json=payload)
 
+        # Check if the request was successful
         if response.status_code == 200:
-            result = response.json()
-            if result["prediction"] == 1:
-                st.error("⚠️ This transaction is likely FRAUDULENT.")
-            else:
-                st.success("✅ This transaction appears LEGITIMATE.")
+            try:
+                result = response.json()
+                prediction = result.get("prediction") or result.get("result")
+                
+                if prediction is None:
+                    st.error("❌ Response missing 'prediction' or 'result' key.")
+                    st.json(result)
+                elif prediction == 1:
+                    st.error("⚠️ This transaction is likely FRAUDULENT.")
+                else:
+                    st.success("✅ This transaction appears LEGITIMATE.")
+            
+            except ValueError:
+                st.error("❌ Failed to parse JSON from response.")
         else:
-            st.error(f"Server returned status code {response.status_code}")
+            st.error(f"❌ Server returned status code {response.status_code}")
+            st.text(response.text)
+
+    except requests.exceptions.ConnectionError:
+        st.error("❌ Failed to connect to predictor service.")
     except Exception as e:
-        st.error(f"Error: {e}")
+        st.error(f"❌ Unexpected error: {e}")
+
