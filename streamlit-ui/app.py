@@ -5,7 +5,7 @@ import os
 
 st.title("💳 Real-Time Credit Card Fraud Detection")
 
-# Predictor service URL (update if deployed on Railway with different domain)
+# Predictor service URL 
 PREDICT_URL = PREDICT_URL = os.getenv("PREDICT_URL", "http://localhost:8000/predict")
 
 fields = {
