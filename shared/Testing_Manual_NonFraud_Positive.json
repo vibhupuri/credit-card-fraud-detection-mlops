@@ -1,3 +1,19 @@
+[
+{
+    "amt": "888.05",
+    "category": "health_fitness",
+    "city": "Amsterdam",
+    "state": "SX",
+    "job": "Mechanical Engineer",
+    "merchant": "Johnny Cash",
+    "gender": null,
+    "zip": "71118",
+    "city_pop": "9098",
+    "lat": "88.99",
+    "long": "-137.73",
+    "merch_lat": "161.43",
+    "merch_long": "-18.18"
+},
 {
     "amt": "128.00",
     "category": "personal_care",
@@ -13,3 +29,4 @@
     "merch_lat": "161.43",
     "merch_long": "-18.18"
 }
+]
