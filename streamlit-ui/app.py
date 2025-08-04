@@ -39,6 +39,7 @@ if st.button("🚨 Detect Fraud"):
                 if prediction is None:
                     st.error("❌ Response missing 'prediction' or 'result' key.")
                     st.json(result)
+                    st.json(payload)
                 elif prediction == 1:
                     st.error("⚠️ This transaction is likely FRAUDULENT.")
                 else:
