@@ -27,7 +27,7 @@ fields = {
 if st.button("🚨 Detect Fraud"):
     try:
         # Prepare payload
-        payload = {"features": list(fields.values())}
+        payload = {"features": list(fields)}
         response = requests.post(PREDICT_URL, json=payload)
 
         # Check if the request was successful
