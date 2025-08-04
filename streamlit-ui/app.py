@@ -6,7 +6,7 @@ import os
 st.title("💳 Real-Time Credit Card Fraud Detection")
 
 # Predictor service URL 
-PREDICT_URL = PREDICT_URL = os.getenv("PREDICT_URL", "http://localhost:8000/predict")
+PREDICT_URL = PREDICT_URL = os.getenv("PREDICT_URL", "https://musical-yodel-g4jwgvv4554hwvv-8000.app.github.dev/predict")
 
 fields = {
     "Transaction Amount": st.number_input("Transaction Amount (₹)", min_value=0.0),
