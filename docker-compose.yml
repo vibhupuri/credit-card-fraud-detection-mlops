@@ -10,3 +10,15 @@ services:
       - ./shared:/shared
     environment:
       - MODEL_PATH=/shared/model.pkl
+
+  streamlit-ui:
+    build: ./streamlit-ui
+    container_name: streamlit
+    ports:
+      - "8501:8501"
+    depends_on:
+      - predictor-service
+    environment:
+      - PREDICT_URL=http://predictor:8000/predict
+    volumes:
+      - ./shared:/shared
