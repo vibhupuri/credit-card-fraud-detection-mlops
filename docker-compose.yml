@@ -24,12 +24,12 @@ services:
   mlflow-server:
     image: ghcr.io/mlflow/mlflow
     container_name: mlflow
+    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root /mlflow/artifacts
     ports:
       - "5000:5000"
-    environment:
-      - MLFLOW_TRACKING_URI=http://mlflow:5000
     volumes:
-      - ./mlruns:/mlflow/mlruns
+      - ./mlflow/artifacts:/mlflow/artifacts
+      - ./mlflow/mlflow.db:/mlflow/mlflow.db
 
   weave-scope:
     image: weaveworks/scope:1.13.2
