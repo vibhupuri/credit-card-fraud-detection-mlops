@@ -21,7 +21,9 @@ with mlflow.start_run():
 
 # 🕒 Timestamp
 timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-run_id = mlflow.active_run().info.run_id
+def generate_run_id(length=32):
+    return ''.join(random.choices(string.ascii_lowercase + string.digits, k=length))
+run_id = generate_run_id()
 
 
 # 🌐 Save static report
