@@ -18,7 +18,26 @@ services:
       - "8501:8501"
     depends_on:
       - predictor-service
-    environment:
-      - PREDICT_URL=http://predictor:8000/predict
     volumes:
       - ./shared:/shared
+
+  mlflow-server:
+    image: ghcr.io/mlflow/mlflow
+    container_name: mlflow
+    ports:
+      - "5000:5000"
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    volumes:
+      - ./mlruns:/mlflow/mlruns
+
+  weave-scope:
+    image: weaveworks/scope:1.13.2
+    container_name: weave-scope
+    privileged: true
+    pid: "host"
+    network_mode: "host"
+    command: "--probe.docker.bridge=docker0"
+    ports:
+      - "4040:4040"
+    restart: always
