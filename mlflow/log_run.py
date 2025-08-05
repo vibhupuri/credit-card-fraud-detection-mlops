@@ -29,7 +29,7 @@ run_id = generate_run_id()
 
 
 # 🌐 Save static report
-with open("report.html", "w") as f:
+with open("docs/report.html", "w") as f:
     f.write(f"""
 <!DOCTYPE html>
 <html lang="en">
