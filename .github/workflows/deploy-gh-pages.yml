@@ -24,10 +24,21 @@ jobs:
       - name: Run prediction and generate report
         run: python mlflow/log_run.py
 
-      - name: Push to gh-pages
+      - name: Deploy report to GitHub Pages
         run: |
          git config user.name github-actions
          git config user.email github-actions@github.com
+
+         # Initialize gh-pages branch if it doesn't exist
+         git fetch origin gh-pages || true
+         git checkout gh-pages || git checkout --orphan gh-pages
+
+         # Copy new report
+         cp docs/report.html report.html
+         git add report.html
+         git commit -m "Update report [CI]" || echo "No changes to commit"
+
          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}
-         git push origin --force gh-pages
+         git push origin gh-pages --force
+
 
