@@ -36,3 +36,16 @@ jobs:
       - name: Run MLflow logging script
         run: |
           python mlflow/log_run.py
+      - name: Create report
+        run: |
+          echo "### Prediction Logged" > report.md
+          echo "📌 Sample Transaction: ${GITHUB_RUN_ID}" >> report.md
+          echo "✅ Status: Logged to MLflow local store (/tmp/mlruns)" >> report.md
+          echo "🔗 Model: KNeighborsClassifier" >> report.md
+
+      - name: Upload summary as artifact
+        uses: actions/upload-artifact@v3
+        with:
+         name: mlflow-report
+         path: report.md
+
