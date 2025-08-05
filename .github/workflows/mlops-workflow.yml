@@ -44,7 +44,7 @@ jobs:
           echo "🔗 Model: KNeighborsClassifier" >> report.md
 
       - name: Upload summary as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
          name: mlflow-report
          path: report.md
