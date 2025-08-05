@@ -16,3 +16,21 @@ with mlflow.start_run():
     mlflow.log_metric("accuracy", 0.987)
     print("✅ Logged dummy MLflow run.")
 
+html_report = f"""
+<html>
+<head><title>Prediction Log Summary</title></head>
+<body>
+    <h1>Prediction Run Summary</h1>
+    <ul>
+        <li><strong>Experiment:</strong> FraudDetection-Demo</li>
+        <li><strong>Prediction:</strong> {int(y_pred[0])} (Probability: {y_proba[0]:.4f})</li>
+        <li><strong>Logged to:</strong> {mlflow.get_tracking_uri()}</li>
+    </ul>
+</body>
+</html>
+"""
+
+with open("report.html", "w") as f:
+    f.write(html_report)
+
+
